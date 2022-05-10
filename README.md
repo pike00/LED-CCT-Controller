@@ -28,6 +28,13 @@ I am only planning on (at least initially) using the LED strips for a maximum of
 
 #### Stepping down to 3.3V
 
-The ESP32 runs on 3.3V, however. I could not be bothered to design an inclue a switching buck converter, so I opted to include a pre-made [3.3V output, up to 21V input Buck converter](https://www.adafruit.com/product/4683) from adafruit that I can include with a 4 pin header. 
+The ESP32 runs on 3.3V, however. I could not be bothered to design an include a switching buck converter, so I opted to include a pre-made [3.3V output, up to 21V input Buck converter](https://www.adafruit.com/product/4683) from adafruit that I can include with a 4 pin header. 
 
 ### Transistors
+
+When choosing a transister, I went with one that can switch a high current (at least 1 amp) of 12V, and quick on/off time (so I can run PWM signals from the ESP32 at at least 1kHz). Based on some quick googling, I've narrowed down to two: 
+
+- [IRLB8721 (N-channel power MOSFET, TO-220)](https://octopart.com/irlb8721pbf-infineon-65874927?r=sp). Can carry up to at least 15A without a heat sink (Rds . Purchased from [Adafruit](https://www.adafruit.com/product/355). Threshold voltage Max of 2.35V (< 3.3 V as required from ESP32). This is *confirmed* to work. 
+- [FQP30N06 (N-Channel MOSFET, TO-220)](https://octopart.com/fqp30n06-onsemi-84328004?r=sp). Looks very similar to IRLB8721. Gate threshold voltage max of 4.0, may not work. **Unconfirmed**.
+
+
